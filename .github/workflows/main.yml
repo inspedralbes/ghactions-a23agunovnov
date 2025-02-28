@@ -8,6 +8,11 @@ jobs:
       - name: Obtenint el codi del respositori
         uses: actions/checkout@v4
 
+      - name: Verificar variables de entorno
+        run: |
+          echo "PROD_USER: ${{ secrets.PROD_USER }}"
+          echo "PROD_HOST: ${{ secrets.PROD_HOST }}"
+
       - name: scp a produccio
         run: |
           echo "${{ secrets.PROD_KEY }}" > ~/prod_key.pem
