@@ -24,3 +24,4 @@ jobs:
           scp -r -o stricthostkeychecking=no -o UserKnownHostsFile=/dev/null -i "~/prod_key.pem" ./web/* ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }}:/home/a23agunovnov/web/a23agunovnov.daw.inspedralbes.cat/public_html/ghactions
           
       - run: echo "🍏 This job's status is ${{ job.status }}."
+      
