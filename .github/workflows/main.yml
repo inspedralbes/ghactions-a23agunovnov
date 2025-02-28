@@ -17,12 +17,11 @@ jobs:
         run: |
           echo "${{ secrets.PROD_KEY }}" > ~/prod_key.pem
           chmod 600 ~/prod_key.pem
-          pwd
-          cp ../index.html ${{ github.workspace }}/web/
-          # cd ${{ github.workspace }}
-          # mkdir -p ./web
-          # echo "Action desplegant a produccio" > ./web/last_deploy.txt
-          # date >> ./web/last_deploy.txt
-          # scp -r -o stricthostkeychecking=no -o UserKnownHostsFile=/dev/null -i "~/prod_key.pem" ./web/* ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }}:/home/a23agunovnov/web/a23agunovnov.daw.inspedralbes.cat/public_html/ghactions
+          cp ./index.html ${{ github.workspace }}/web/
+          cd ${{ github.workspace }}
+          mkdir -p ./web
+          echo "Action desplegant a produccio" > ./web/last_deploy.txt
+          date >> ./web/last_deploy.txt
+          scp -r -o stricthostkeychecking=no -o UserKnownHostsFile=/dev/null -i "~/prod_key.pem" ./web/* ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }}:/home/a23agunovnov/web/a23agunovnov.daw.inspedralbes.cat/public_html/ghactions
           
       - run: echo "🍏 This job's status is ${{ job.status }}."
