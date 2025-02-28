@@ -20,6 +20,8 @@ jobs:
           cd ${{ github.workspace }}
           mkdir -p ./web
           cp ./index.html ${{ github.workspace }}/web/
+          cp ./llistat.html ${{ github.workspace }}/web/
+          cp ./portada.html ${{ github.workspace }}/web/
           echo "Action desplegant a produccio" > ./web/last_deploy.txt
           date >> ./web/last_deploy.txt
           scp -r -o stricthostkeychecking=no -o UserKnownHostsFile=/dev/null -i "~/prod_key.pem" ./web/* ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }}:/home/a23agunovnov/web/a23agunovnov.daw.inspedralbes.cat/public_html/ghactions
