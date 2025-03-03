@@ -31,9 +31,9 @@ jobs:
         run: |
           cd ${{ github.workspace }}
           mkdir -p ~/web
-          cp -r ./proyecto-vue/dist/* ~/web/
-          echo "Action desplegant a produccio" > ~/web/last_deploy.txt
-          date >> ~/web/last_deploy.txt
+          cp -r ./proyecto-vue/dist/* ${{ github.workspace }}/web/
+          echo "Action desplegant a produccio" > ./web/last_deploy.txt
+          date >> ./web/last_deploy.txt
           scp -r -o stricthostkeychecking=no -o UserKnownHostsFile=/dev/null -i "~/prod_key.pem" ./web/* ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }}:/home/a23agunovnov/web/a23agunovnov.daw.inspedralbes.cat/public_html/ghactionsdist
           
       - run: echo "🍏 This job's status is ${{ job.status }}."
