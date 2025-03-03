@@ -19,8 +19,10 @@ jobs:
           chmod 600 ~/prod_key.pem
           cd ${{ github.workspace }}
           mkdir -p ./web
-          cd proyecto-vue/ npm install
+          cd proyecto-vue/
+          npm install
           npm run build
+          cd ../
           cp ./proyecto-vue/dist/* ${{ github.workspace }}/web/
           echo "Action desplegant a produccio" > ./web/last_deploy.txt
           date >> ./web/last_deploy.txt
