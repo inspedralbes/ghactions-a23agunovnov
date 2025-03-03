@@ -1,5 +1,5 @@
 name: Preparant per producció
-run-name: ${{ github.actor }} està pujant l'aplicació a PROD  🚀
+run-name: ${{ github.actor }} està pujant l'aplicació a PROD (/dist) 🚀
 on: [push]
 jobs:
   Pujar-a-produccio-amb-SCP:
@@ -19,11 +19,10 @@ jobs:
           chmod 600 ~/prod_key.pem
           cd ${{ github.workspace }}
           mkdir -p ./web
-          cp ./index.html ${{ github.workspace }}/web/
-          cp ./llistat.html ${{ github.workspace }}/web/
-          cp ./portada.html ${{ github.workspace }}/web/
+          npm run build
+          cp ./proyecto-vue/dist/* ${{ github.workspace }}/web/
           echo "Action desplegant a produccio" > ./web/last_deploy.txt
           date >> ./web/last_deploy.txt
-          scp -r -o stricthostkeychecking=no -o UserKnownHostsFile=/dev/null -i "~/prod_key.pem" ./web/* ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }}:/home/a23agunovnov/web/a23agunovnov.daw.inspedralbes.cat/public_html/ghactions
+          scp -r -o stricthostkeychecking=no -o UserKnownHostsFile=/dev/null -i "~/prod_key.pem" ./web/* ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }}:/home/a23agunovnov/web/a23agunovnov.daw.inspedralbes.cat/public_html/ghactionsdist
           
       - run: echo "🍏 This job's status is ${{ job.status }}."
