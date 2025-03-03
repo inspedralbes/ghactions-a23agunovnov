@@ -23,7 +23,7 @@ jobs:
           npm install
           npm run build
           cd ../
-          cp ./proyecto-vue/dist/* ${{ github.workspace }}/web/
+          cp -r ./proyecto-vue/dist/* ${{ github.workspace }}/web/
           echo "Action desplegant a produccio" > ./web/last_deploy.txt
           date >> ./web/last_deploy.txt
           scp -r -o stricthostkeychecking=no -o UserKnownHostsFile=/dev/null -i "~/prod_key.pem" ./web/* ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }}:/home/a23agunovnov/web/a23agunovnov.daw.inspedralbes.cat/public_html/ghactionsdist
